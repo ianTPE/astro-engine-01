@@ -1,0 +1,185 @@
+---
+title: 'Universal Renderer Demo'
+description: '展示 Table、Chart 和 Mermaid 的通用渲染器'
+pubDate: 'Nov 20 2024'
+heroImage: '../../assets/blog-placeholder-1.jpg'
+---
+
+import { UniversalTable } from '../../components/UniversalTable'
+import { UniversalChart } from '../../components/UniversalChart'
+import { EnhancedMermaid } from '../../components/EnhancedMermaid'
+
+export const tableData = [
+  { name: 'Astro', type: 'MPA', score: 95, description: '現代化的靜態網站生成器' },
+  { name: 'Next.js', type: 'SPA/MPA', score: 90, description: 'React 全端框架' },
+  { name: 'Nuxt', type: 'SPA/MPA', score: 88, description: 'Vue 全端框架' },
+  { name: 'SvelteKit', type: 'MPA', score: 92, description: 'Svelte 全端框架' },
+]
+
+export const tableCols = [
+  {
+    header: '名稱',
+    accessorKey: 'name',
+  },
+  {
+    header: '類型',
+    accessorKey: 'type',
+  },
+  {
+    header: '分數',
+    accessorKey: 'score',
+  },
+  {
+    header: '說明',
+    accessorKey: 'description',
+  },
+]
+
+export const salesData = {
+  labels: ['一月', '二月', '三月', '四月', '五月', '六月'],
+  datasets: [
+    {
+      label: '2024 銷售額',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1,
+    },
+  ],
+}
+
+export const growthData = {
+  labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+  datasets: [
+    {
+      label: '用戶增長',
+      data: [30, 45, 60, 90],
+      borderColor: 'rgb(75, 192, 192)',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      tension: 0.4,
+    },
+    {
+      label: '收入增長',
+      data: [20, 35, 55, 80],
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      tension: 0.4,
+    },
+  ],
+}
+
+# Universal Renderer 示範
+
+這篇文章展示如何在 Astro + MDX 中使用通用渲染器來呈現資料驅動的內容。
+
+## 1. UniversalTable - 資料表格
+
+使用 TanStack Table 建立的響應式表格：
+
+<UniversalTable client:load data={tableData} columns={tableCols} />
+
+### 特色：
+- 完全資料驅動
+- 自動響應式設計
+- 支援排序、過濾（可擴展）
+- 在 MDX 中只需定義資料和欄位
+
+---
+
+## 2. UniversalChart - 圖表
+
+### 長條圖範例
+
+<UniversalChart client:load type="bar" data={salesData} />
+
+### 折線圖範例
+
+<UniversalChart client:load type="line" data={growthData} />
+
+### 特色：
+- 支援多種圖表類型（Bar, Line, 可擴展更多）
+- 自動響應式
+- 可自訂選項
+- Chart.js 強大的功能
+
+---
+
+## 3. EnhancedMermaid - 可互動的流程圖
+
+### 系統架構圖
+
+<EnhancedMermaid client:load chartString={`
+graph TD
+    A[使用者] --> B[Cloudflare CDN]
+    B --> C[Astro SSR/SSG]
+    C --> D[React Islands]
+    C --> E[靜態資源]
+    D --> F[UniversalTable]
+    D --> G[UniversalChart]
+    D --> H[EnhancedMermaid]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bfb,stroke:#333,stroke-width:2px
+`}/>
+
+### 資料流程圖
+
+<EnhancedMermaid client:load chartString={`
+sequenceDiagram
+    participant U as 使用者
+    participant M as MDX 檔案
+    participant A as Astro
+    participant R as React Island
+
+    U->>M: 瀏覽文章
+    M->>A: 載入 MDX
+    A->>A: SSR/SSG 渲染
+    A->>R: 載入互動元件
+    R->>U: 顯示可互動內容
+    U->>R: 拖曳/縮放圖表
+    R->>U: 即時回饋
+`}/>
+
+### 特色：
+- 支援拖曳移動
+- 滑鼠滾輪縮放
+- 支援所有 Mermaid 圖表類型
+- 完美適合複雜架構圖
+
+---
+
+## 使用方式
+
+### 1. 在 MDX 中引入元件
+
+```jsx
+import { UniversalTable } from '../../components/UniversalTable'
+import { UniversalChart } from '../../components/UniversalChart'
+import { EnhancedMermaid } from '../../components/EnhancedMermaid'
+```
+
+### 2. 定義資料（export 變數）
+
+```jsx
+export const myData = [...]
+export const myColumns = [...]
+```
+
+### 3. 使用元件（加上 client:load）
+
+```jsx
+<UniversalTable client:load data={myData} columns={myColumns} />
+<UniversalChart client:load type="bar" data={chartData} />
+<EnhancedMermaid client:load chartString={`graph TD...`}/>
+```
+
+---
+
+## 為什麼這樣設計？
+
+1. **資料與呈現分離**：MDX 只負責資料，元件負責渲染邏輯
+2. **React Islands**：只在需要互動的地方載入 JavaScript
+3. **效能優化**：主要內容靜態生成，互動元件按需載入
+4. **易於維護**：UX 改進集中在元件，不需要修改每篇文章
+5. **手機友善**：統一的響應式設計

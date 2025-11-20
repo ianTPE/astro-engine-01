@@ -1,0 +1,275 @@
+---
+title: '數據視覺化範例：2024 年度報告'
+description: '使用表格、圖表和流程圖展示年度數據分析'
+pubDate: 'Nov 20 2024'
+heroImage: '../../assets/blog-placeholder-3.jpg'
+---
+
+import { UniversalTable } from '../../components/UniversalTable'
+import { UniversalChart } from '../../components/UniversalChart'
+import { EnhancedMermaid } from '../../components/EnhancedMermaid'
+
+export const performanceData = [
+  { quarter: 'Q1 2024', revenue: 1250000, users: 15420, growth: '+12%', satisfaction: '4.5/5' },
+  { quarter: 'Q2 2024', revenue: 1580000, users: 18950, growth: '+23%', satisfaction: '4.6/5' },
+  { quarter: 'Q3 2024', revenue: 1890000, users: 22100, growth: '+17%', satisfaction: '4.7/5' },
+  { quarter: 'Q4 2024', revenue: 2150000, users: 26800, growth: '+21%', satisfaction: '4.8/5' },
+]
+
+export const performanceColumns = [
+  { header: '季度', accessorKey: 'quarter' },
+  { header: '營收 (TWD)', accessorKey: 'revenue' },
+  { header: '用戶數', accessorKey: 'users' },
+  { header: '成長率', accessorKey: 'growth' },
+  { header: '滿意度', accessorKey: 'satisfaction' },
+]
+
+export const revenueChartData = {
+  labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+  datasets: [
+    {
+      label: '2024 營收 (千元)',
+      data: [1250, 1580, 1890, 2150],
+      backgroundColor: 'rgba(59, 130, 246, 0.5)',
+      borderColor: 'rgba(59, 130, 246, 1)',
+      borderWidth: 2,
+    },
+    {
+      label: '2023 營收 (千元)',
+      data: [1100, 1280, 1620, 1780],
+      backgroundColor: 'rgba(156, 163, 175, 0.5)',
+      borderColor: 'rgba(156, 163, 175, 1)',
+      borderWidth: 2,
+    },
+  ],
+}
+
+export const userGrowthData = {
+  labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+  datasets: [
+    {
+      label: '活躍用戶',
+      data: [12500, 13200, 15420, 16800, 17900, 18950, 20100, 21200, 22100, 24300, 25800, 26800],
+      borderColor: 'rgb(34, 197, 94)',
+      backgroundColor: 'rgba(34, 197, 94, 0.1)',
+      tension: 0.4,
+      fill: true,
+    },
+    {
+      label: '新增用戶',
+      data: [800, 700, 2220, 1380, 1100, 1050, 1150, 1100, 900, 2200, 1500, 1000],
+      borderColor: 'rgb(249, 115, 22)',
+      backgroundColor: 'rgba(249, 115, 22, 0.1)',
+      tension: 0.4,
+      fill: true,
+    },
+  ],
+}
+
+export const techStackData = [
+  { technology: 'Astro', category: 'Framework', usage: '主要', performance: '⭐⭐⭐⭐⭐' },
+  { technology: 'React', category: 'UI Library', usage: 'Islands', performance: '⭐⭐⭐⭐' },
+  { technology: 'Cloudflare', category: 'Hosting', usage: '主要', performance: '⭐⭐⭐⭐⭐' },
+  { technology: 'TanStack Table', category: 'Data Table', usage: '工具', performance: '⭐⭐⭐⭐⭐' },
+  { technology: 'Chart.js', category: 'Visualization', usage: '工具', performance: '⭐⭐⭐⭐' },
+  { technology: 'Mermaid', category: 'Diagrams', usage: '工具', performance: '⭐⭐⭐⭐' },
+]
+
+export const techStackColumns = [
+  { header: '技術', accessorKey: 'technology' },
+  { header: '類別', accessorKey: 'category' },
+  { header: '使用方式', accessorKey: 'usage' },
+  { header: '效能評價', accessorKey: 'performance' },
+]
+
+# 2024 年度數據分析報告
+
+這份報告展示了我們在 2024 年的業務表現，包含營收數據、用戶增長和技術架構分析。
+
+## 📊 季度表現總覽
+
+以下是 2024 年四個季度的關鍵指標：
+
+<UniversalTable client:load data={performanceData} columns={performanceColumns} />
+
+### 重點觀察
+
+- **最佳季度**：Q4 營收突破 215 萬，用戶數達 26,800
+- **成長最快**：Q2 用戶增長率達 23%
+- **客戶滿意度**：全年穩定提升，Q4 達到 4.8/5
+- **年度總營收**：687 萬元（同比增長 18%）
+
+---
+
+## 📈 營收對比分析
+
+2024 年與 2023 年營收季度對比：
+
+<UniversalChart client:load type="bar" data={revenueChartData} />
+
+**分析要點：**
+- Q1-Q2: 穩定增長期，基礎用戶累積
+- Q3: 突破性成長，新產品上線帶動營收
+- Q4: 旺季效應明顯，達到年度高峰
+- 全年保持健康增長趨勢
+
+---
+
+## 👥 用戶增長趨勢
+
+2024 年月度活躍用戶與新增用戶變化：
+
+<UniversalChart client:load type="line" data={userGrowthData} />
+
+**趨勢洞察：**
+- 3月、10月出現新增用戶高峰（行銷活動效果顯著）
+- 活躍用戶穩定成長，顯示良好的用戶留存率
+- 下半年成長加速，市場認可度提升
+
+---
+
+## 🏗️ 系統架構圖
+
+我們的技術架構採用現代化的 Jamstack 方案：
+
+<EnhancedMermaid client:load chartString={`
+graph TB
+    subgraph "使用者端"
+        A[瀏覽器]
+    end
+
+    subgraph "CDN & Edge"
+        B[Cloudflare CDN]
+        C[Edge Functions]
+    end
+
+    subgraph "應用層"
+        D[Astro SSG/SSR]
+        E[React Islands]
+        F[MDX Content]
+    end
+
+    subgraph "資料層"
+        G[Static Assets]
+        H[API Gateway]
+        I[Database]
+    end
+
+    A -->|HTTPS| B
+    B --> C
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+    E --> H
+    H --> I
+
+    style A fill:#e1f5ff,stroke:#01579b
+    style B fill:#fff3e0,stroke:#e65100
+    style D fill:#f3e5f5,stroke:#4a148c
+    style E fill:#e8f5e9,stroke:#1b5e20
+`}/>
+
+---
+
+## 🔄 數據處理流程
+
+從數據收集到視覺化呈現的完整流程：
+
+<EnhancedMermaid client:load chartString={`
+sequenceDiagram
+    participant U as 用戶
+    participant W as Web App
+    participant A as API Server
+    participant D as Database
+    participant C as Cache Layer
+
+    U->>W: 瀏覽頁面
+    W->>C: 檢查快取
+
+    alt 快取命中
+        C-->>W: 返回快取數據
+    else 快取未命中
+        W->>A: 請求數據
+        A->>D: 查詢數據庫
+        D-->>A: 返回原始數據
+        A->>A: 數據處理與聚合
+        A-->>W: 返回處理後數據
+        W->>C: 更新快取
+    end
+
+    W->>W: 渲染 React Islands
+    W-->>U: 顯示互動式圖表
+    U->>W: 互動操作（縮放、拖曳）
+    W-->>U: 即時視覺回饋
+`}/>
+
+---
+
+## 🛠️ 技術棧詳情
+
+本專案使用的核心技術與工具：
+
+<UniversalTable client:load data={techStackData} columns={techStackColumns} />
+
+### 為什麼選擇這個技術棧？
+
+1. **Astro**: 提供最佳的靜態生成效能，SEO 友善
+2. **React Islands**: 只在需要互動的地方載入 JavaScript，最小化 bundle size
+3. **Cloudflare**: 全球 CDN + Edge Computing，極速載入
+4. **資料驅動元件**: 內容與邏輯分離，易於維護
+
+---
+
+## 📋 專案時程規劃
+
+2025 年的開發路線圖：
+
+<EnhancedMermaid client:load chartString={`
+gantt
+    title 2025 專案開發時程
+    dateFormat  YYYY-MM-DD
+    section Phase 1
+    需求分析           :a1, 2025-01-01, 20d
+    架構設計           :a2, after a1, 15d
+
+    section Phase 2
+    核心功能開發       :b1, after a2, 45d
+    API 整合           :b2, after a2, 30d
+
+    section Phase 3
+    測試與優化         :c1, after b1, 20d
+    效能調校           :c2, after b1, 15d
+
+    section Phase 4
+    Beta 測試          :d1, after c1, 15d
+    正式上線           :milestone, d2, after d1, 1d
+`}/>
+
+---
+
+## 🎯 下季度目標
+
+基於本季數據分析，我們設定了以下目標：
+
+- **營收目標**: 提升 25%，目標 270 萬
+- **用戶目標**: 突破 35,000 活躍用戶
+- **滿意度**: 維持 4.8+ 評分
+- **技術升級**: 完成 Astro 6.0 遷移，提升 30% 效能
+
+---
+
+## 💡 結論
+
+2024 是成功的一年，我們達成了：
+
+✅ 營收年增長 18%
+✅ 用戶數增長 74%
+✅ 客戶滿意度持續提升
+✅ 技術架構現代化完成
+
+透過資料驅動的決策和現代化的技術架構，我們準備好迎接 2025 的挑戰！
+
+---
+
+*本報告使用 Astro + React Islands 架構生成，所有圖表支援互動操作*
