@@ -1,15 +1,15 @@
 {
 	"name": "astro-engine-01",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro build && wrangler pages dev",
-		"astro": "astro",
-		"deploy": "astro build && wrangler pages deploy",
-		"cf-typegen": "wrangler types"
-	},
+ "type": "module",
+ "version": "0.0.1",
+  "scripts": {
+    "dev": "bunx astro dev",
+    "build": "bunx astro build",
+    "preview": "bunx astro build && bunx wrangler pages dev",
+    "astro": "bunx astro",
+    "deploy": "bunx astro build && bunx wrangler pages deploy",
+    "cf-typegen": "bunx wrangler types"
+  },
 	"dependencies": {
 		"@astrojs/cloudflare": "^12.6.11",
 		"@astrojs/mdx": "^4.3.12",
