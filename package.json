@@ -3,10 +3,14 @@
  "type": "module",
  "version": "0.0.1",
   "scripts": {
+    "predev": "bun install --frozen-lockfile",
     "dev": "bunx astro dev",
+    "prebuild": "bun install --frozen-lockfile",
     "build": "bunx astro build",
+    "prepreview": "bun install --frozen-lockfile",
     "preview": "bunx astro build && bunx wrangler pages dev",
     "astro": "bunx astro",
+    "predeploy": "bun install --frozen-lockfile",
     "deploy": "bunx astro build && bunx wrangler pages deploy",
     "cf-typegen": "bunx wrangler types"
   },
