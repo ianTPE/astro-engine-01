@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(bun add:*)",
-      "Bash(bunx astro dev:*)"
+      "Bash(bunx astro dev:*)",
+      "Bash(bunx astro add:*)",
+      "Bash(bunx astro check:*)",
+      "Bash(bun run build)",
+      "Bash(bun remove:*)"
     ],
     "deny": [],
     "ask": []
