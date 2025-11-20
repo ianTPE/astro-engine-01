@@ -13,8 +13,7 @@ export default defineConfig({
   adapter: cloudflare({
     platformProxy: {
       enabled: true
-    },
-
-    imageService: "cloudflare"
+    }
+    // Use Astro’s default image service so assets are served directly
   }),
 });
