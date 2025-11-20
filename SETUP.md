@@ -6,6 +6,9 @@
 - 版本：v3.4.18
 - 整合：`@astrojs/tailwind@6.0.2`
 - 配置檔：`tailwind.config.mjs`
+- Plugins：
+  - `@tailwindcss/typography` - 文章排版樣式
+  - `tailwindcss-animate` - 動畫工具
 
 ### 2. shadcn/ui
 - 核心依賴：
@@ -78,6 +81,11 @@
    - 基礎示範所有三個渲染器
    - 使用說明和技術說明
 
+4. **typography-demo.mdx**
+   - 展示 Tailwind Typography 效果
+   - 包含各種 Markdown 元素
+   - shadcn/ui 配色整合範例
+
 ## 🚀 使用方式
 
 ### 在 MDX 中使用元件
@@ -102,6 +110,24 @@ export const columns = [...]
 <UniversalChart client:load type="bar" data={chartData} />
 <EnhancedMermaid client:load chartString={`graph TD...`}/>
 ```
+
+### 使用 Typography (Prose)
+
+所有 MDX 文章都會自動套用 Typography 樣式。在 `BlogPost.astro` 布局中已設定：
+
+```astro
+<div class="prose prose-slate dark:prose-invert max-w-none">
+  <slot />
+</div>
+```
+
+這會讓你的 Markdown 內容自動獲得：
+- 標題、段落、清單的適當間距
+- 程式碼區塊的背景和樣式
+- 表格的邊框和對齊
+- 連結的顏色和 hover 效果
+- 引用區塊的樣式
+- 與 shadcn/ui 顏色系統整合
 
 ### 新增 shadcn/ui 元件
 

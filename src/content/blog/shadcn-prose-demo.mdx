@@ -1,0 +1,198 @@
+---
+title: 'shadcn-prose 排版示範'
+description: '使用 shadcn-prose 元件的現代化文章排版'
+pubDate: 'Nov 20 2024'
+heroImage: '../../assets/blog-placeholder-5.jpg'
+---
+
+import { Prose } from '../../components/ui/prose'
+
+<Prose>
+
+# shadcn-prose 排版系統
+
+這篇文章展示了使用 **shadcn-prose** 元件的排版效果。與 Tailwind Typography 不同，shadcn-prose 是一個輕量級的解決方案，完全基於 Tailwind CSS utility classes。
+
+## 為什麼選擇 shadcn-prose？
+
+shadcn-prose 相比 `@tailwindcss/typography` 有以下優勢：
+
+1. **更輕量** - 不需要額外的 plugin，純粹使用 Tailwind utilities
+2. **更可控** - 完全掌控每個元素的樣式
+3. **與 shadcn/ui 完美整合** - 使用相同的設計語言和顏色系統
+4. **不會干擾其他元素** - 只影響包裹在 `<Prose>` 元件內的內容
+
+## 文字樣式
+
+這是一個普通段落。你可以使用 **粗體文字** 來強調重點，或使用 *斜體文字* 來表示引用或特殊術語。
+
+你也可以結合使用 ***粗斜體*** 來獲得最強的強調效果。
+
+## 連結與引用
+
+訪問 [Astro 官方網站](https://astro.build) 來了解更多關於 Astro 的資訊。連結會有下劃線和 hover 效果。
+
+> 這是一段引用文字。
+>
+> shadcn-prose 的引用區塊使用了 primary 顏色的左側邊框，讓引用內容更加突出。
+
+## 清單
+
+### 無序清單
+
+- 安裝必要的依賴
+- 配置 Tailwind CSS
+- 創建 Prose 元件
+  - 設定基礎樣式
+  - 添加響應式設計
+  - 整合 shadcn/ui 顏色
+
+### 有序清單
+
+1. 首先，移除 `@tailwindcss/typography`
+2. 創建 `prose.tsx` 元件
+3. 在 MDX 中使用 `<Prose>` 包裹內容
+4. 享受乾淨的排版效果
+
+## 程式碼
+
+### 行內程式碼
+
+使用 `npm install` 安裝依賴，或者使用 `bun add` 如果你偏好 Bun。變數 `const greeting = "Hello"` 會以特殊樣式顯示。
+
+### 程式碼區塊
+
+```typescript
+// TypeScript 範例
+interface BlogPost {
+  title: string
+  description: string
+  pubDate: Date
+  heroImage?: string
+}
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('zh-TW', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+```
+
+```jsx
+// React 元件範例
+import { Prose } from '@/components/ui/prose'
+
+export function BlogContent({ children }) {
+  return (
+    <article className="container mx-auto py-8">
+      <Prose>{children}</Prose>
+    </article>
+  )
+}
+```
+
+## 表格
+
+shadcn-prose 的表格樣式不會產生額外的空間問題：
+
+| 功能 | @tailwindcss/typography | shadcn-prose |
+|------|------------------------|--------------|
+| 大小 | ~45KB | ~5KB |
+| 可控性 | 中等 | 完全控制 |
+| 整合度 | 需要配置 | 原生整合 |
+| 表格空間 | 可能有問題 | 完美 |
+
+表格會有適當的邊框和間距，但不會產生多餘的空間。
+
+## 標題層級
+
+# H1 標題 - 最重要
+
+## H2 標題 - 章節
+
+### H3 標題 - 子章節
+
+#### H4 標題 - 細節
+
+##### H5 標題 - 更小的細節
+
+###### H6 標題 - 最小層級
+
+所有標題都有適當的字體大小和粗細設定。
+
+---
+
+## 其他元素
+
+### 分隔線
+
+上面的水平線用來分隔內容區塊。
+
+### 強調文字
+
+這段包含 **重要的資訊** 需要特別注意。使用粗體來突出關鍵內容。
+
+### 圖片
+
+![範例圖片](../../assets/blog-placeholder-1.jpg)
+
+圖片會自動加上圓角和陰影效果。
+
+## 使用方式
+
+在你的 MDX 檔案中：
+
+```jsx
+---
+title: '我的文章'
+---
+
+import { Prose } from '../../components/ui/prose'
+
+<Prose>
+
+# 內容開始
+
+所有的 Markdown 內容都會自動套用 shadcn-prose 樣式。
+
+</Prose>
+```
+
+## 樣式特色
+
+shadcn-prose 提供的樣式包括：
+
+- ✅ **標題**: `scroll-mt-20` 用於錨點導航
+- ✅ **連結**: 下劃線 + primary 顏色裝飾
+- ✅ **引用**: primary 顏色的左側邊框
+- ✅ **程式碼**: muted 背景 + 圓角
+- ✅ **表格**: 清晰的邊框 + muted 表頭背景
+- ✅ **圖片**: 圓角 + 陰影
+- ✅ **清單**: muted-foreground 的標記
+
+## 與 shadcn/ui 的整合
+
+所有顏色都使用 shadcn/ui 的 CSS 變數：
+
+- `foreground` - 主要文字
+- `muted-foreground` - 次要文字
+- `primary` - 強調色
+- `border` - 邊框
+- `muted` - 背景
+
+這意味著當你切換 shadcn/ui 主題時，prose 內容也會自動更新！
+
+## 結論
+
+shadcn-prose 是一個：
+
+✅ **輕量** - 不需要額外的 Tailwind plugin
+✅ **靈活** - 完全基於 utility classes
+✅ **整合** - 與 shadcn/ui 設計系統完美配合
+✅ **乾淨** - 不會產生表格空間等問題
+
+推薦給所有使用 shadcn/ui 的專案！
+
+</Prose>
