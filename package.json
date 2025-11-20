@@ -1,0 +1,25 @@
+{
+	"name": "astro-engine-01",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro build && wrangler pages dev",
+		"astro": "astro",
+		"deploy": "astro build && wrangler pages deploy",
+		"cf-typegen": "wrangler types"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^12.6.11",
+		"@astrojs/mdx": "^4.3.12",
+		"@astrojs/rss": "^4.0.14",
+		"@astrojs/sitemap": "^3.6.0",
+		"astro": "^5.16.0",
+		"sharp": "^0.34.3"
+	},
+	"devDependencies": {
+		"@types/node": "^24.10.1",
+		"wrangler": "^4.49.1"
+	}
+}
